@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animal Memory Match</title>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div id="start-screen" class="start-screen">
+        <h1 class="game-title">🐾 Animal Match! 🐾</h1>
+        <input type="text" id="name-input" placeholder="Enter your name" class="name-input" />
+        <button onclick="startGame()" class="btn-start">▶️ Start Game</button>
+    </div>
+
+    <div class="game-container" id="game-screen" style="display:none;">
+        <h1 class="game-title">🐾 Animal Match! 🐾</h1>
+
+        <div class="info-panel">
+            <div id="player-name">👤 <strong>Player:</strong> <span class="name">--</span></div>
+            <div id="timer">⏱️ <strong>Time:</strong> <span class="time">0s</span></div>
+        </div>
+
+        <div class="grid" id="grid">
+        </div>
+        <div id="rank-display">🏆 <strong>Your Rank:</strong> <span class="rank">--</span></div>
+        <div id="leaderboard">
+            🔝 <strong>Top 5 Leaderboard:</strong><br />
+            <ol id="leaderboard-list">
+                <!-- Top scores will be inserted here -->
+            </ol>
+        </div>
+
+        <!-- Try Again Button -->
+        <button onclick="restartGame()" class="btn-restart">🔄 Try Again</button>
+    </div>
+
+    <!-- 🎉 End Screen (after winning) -->
+    <div id="end-screen" class="end-screen" style="display:none;">
+        <h2>🎊 You Won! Play Again?</h2>
+        <input type="text" id="name-input-again" placeholder="Enter your name" class="name-input" />
+        <button onclick="restartGame()" class="btn-start">🔁 Play Again</button>
+    </div>
+
+    <!-- Confetti Canvas for Celebration -->
+    <canvas class="confetti" id="confettiCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
