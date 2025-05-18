@@ -18,7 +18,7 @@ const startScreen = document.getElementById('start-screen');
 const gameScreen = document.getElementById('game-screen');
 const endScreen = document.getElementById('end-screen');
 
-// Start the game after entering name
+// Start the game
 function startGame() {
   const nameInput = document.getElementById('name-input');
   playerName = nameInput.value.trim();
@@ -81,11 +81,18 @@ function flipCard() {
       if (matched === cards.length) {
         clearInterval(interval);
         saveRank(playerName, timer);
+
         setTimeout(() => {
           alert(`🎉 Congratulations ${playerName}! You matched all in ${timer} seconds!`);
+          
+          // Show leaderboard and rank
           showRank();
-          gameScreen.style.display = 'none';
-          endScreen.style.display = 'block';
+
+          // Wait for user to read leaderboard
+          setTimeout(() => {
+            gameScreen.style.display = 'none';
+            endScreen.style.display = 'block';
+          }, 9000); 
         }, 500);
       }
     } else {
@@ -127,7 +134,7 @@ function saveRank(name, score) {
 function showRank() {
   let ranks = JSON.parse(localStorage.getItem('ranks') || '[]');
   const playerEntry = ranks.find(r => r.name === playerName && r.score === timer);
-  const playerRank = ranks.indexOf(playerEntry) + 1;
+  const playerRank = playerEntry ? ranks.indexOf(playerEntry) + 1 : '--';
   rankDisplay.innerText = playerRank ? `#${playerRank}` : '--';
 
   leaderboardList.innerHTML = '';
