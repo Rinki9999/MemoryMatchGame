@@ -81,7 +81,6 @@ function flipCard() {
       if (matched === cards.length) {
         clearInterval(interval);
         saveRank(playerName, timer);
-        showConfetti();
         setTimeout(() => {
           alert(`🎉 Congratulations ${playerName}! You matched all in ${timer} seconds!`);
           showRank();
@@ -108,8 +107,8 @@ function restartGame() {
     playerName = newName;
   }
 
-  // Show start screen to enter name again
   endScreen.style.display = 'none';
+  gameScreen.style.display = 'none';
   startScreen.style.display = 'block';
 }
 
@@ -127,8 +126,9 @@ function saveRank(name, score) {
 
 function showRank() {
   let ranks = JSON.parse(localStorage.getItem('ranks') || '[]');
-  const playerRank = ranks.findIndex(r => r.name === playerName && r.score === timer) + 1;
-  rankDisplay.innerText = playerRank ? playerRank : '--';
+  const playerEntry = ranks.find(r => r.name === playerName && r.score === timer);
+  const playerRank = ranks.indexOf(playerEntry) + 1;
+  rankDisplay.innerText = playerRank ? `#${playerRank}` : '--';
 
   leaderboardList.innerHTML = '';
   ranks.forEach((r, i) => {
@@ -137,4 +137,3 @@ function showRank() {
     leaderboardList.appendChild(li);
   });
 }
-
