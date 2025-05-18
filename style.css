@@ -122,3 +122,7 @@
   .hidden {
     display: none;
   }
+  input{
+    padding:15px;
+    border-radius: 7px;
+  }
